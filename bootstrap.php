@@ -15,3 +15,7 @@ use TightenCo\Jigsaw\Jigsaw;
  *     // Your code here
  * });
  */
+$events->beforeBuild(function (Jigsaw $jigsaw) {
+    //carica l'ultima versione del gist del calcolatore di orari
+    $jigsaw->setConfig('time_calculator_html', file_get_contents('https://gist.githubusercontent.com/ManuDoni/7b65568541d333b422678657b536f771/raw/'));
+});

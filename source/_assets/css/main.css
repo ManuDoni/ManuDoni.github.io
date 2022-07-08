@@ -1,3 +1,25 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+    h1 {
+        @apply mb-4 text-5xl font-bold;
+    }
+
+    h2 {
+        @apply mb-4 text-3xl font-bold;
+    }
+
+    a {
+        @apply cursor-pointer
+    }
+}
+
+@layer components {
+    .bg-mountains {
+        @apply bg-center bg-no-repeat bg-cover;
+        background-image: url(../images/mountains_landscape_without_rocks.svg);
+    }
+}

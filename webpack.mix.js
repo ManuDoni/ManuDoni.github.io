@@ -10,6 +10,7 @@ mix.jigsaw()
         require('postcss-import'),
         require('tailwindcss'),
     ])
+    .copy('source/_assets/images/', 'source/assets/build/images/')
     .options({
         processCssUrls: false,
     })
