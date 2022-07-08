@@ -1,7 +1,12 @@
 {
     "/js/main.js": "/js/main.js?id=9a3976b92064a906dd1560b2bb4e8ca2",
-    "/css/main.css": "/css/main.css?id=f6734d3e71710a0b3780837e60013ed4",
+    "/css/main.css": "/css/main.css?id=1ca7cda09935bace0330f4c6c906b20a",
     "/images/mountains.svg": "/images/mountains.svg?id=8b8f1086cb905eb0a24ced60080f391a",
     "/images/mountains_landscape_without_rocks.svg": "/images/mountains_landscape_without_rocks.svg?id=03e38e21d74cb20b5d7a6e4c62b85fe0",
-    "/images/mountains_landscape_with_rocks.svg": "/images/mountains_landscape_with_rocks.svg?id=2917181784be43c33f29a0e3e0e19531"
+    "/images/mountains_landscape_with_rocks.svg": "/images/mountains_landscape_with_rocks.svg?id=2917181784be43c33f29a0e3e0e19531",
+    "/fonts/Comfortaa/Comfortaa-Bold.ttf": "/fonts/Comfortaa/Comfortaa-Bold.ttf?id=53c620a5a1bf50fe101198a0161c27df",
+    "/fonts/Comfortaa/Comfortaa-Light.ttf": "/fonts/Comfortaa/Comfortaa-Light.ttf?id=971ee1adb49cf0f4fd93d8c82d3e0a9e",
+    "/fonts/Comfortaa/Comfortaa-Medium.ttf": "/fonts/Comfortaa/Comfortaa-Medium.ttf?id=f5c4872463a2dd8b0a6adbfb57585a97",
+    "/fonts/Comfortaa/Comfortaa-Regular.ttf": "/fonts/Comfortaa/Comfortaa-Regular.ttf?id=b5e68db6cd3ddea7af313bd557616582",
+    "/fonts/Comfortaa/Comfortaa-SemiBold.ttf": "/fonts/Comfortaa/Comfortaa-SemiBold.ttf?id=cc037e4491d91a79eddb18c1b092011e"
 }
