@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="canonical" href="/time-calculator">
+        <meta name="description" content="Manuel Donini&#039;s personal website">
+        <title>Manuel Donini</title>
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=f6734d3e71710a0b3780837e60013ed4">
+        <script defer src="/assets/build/js/main.js?id=9a3976b92064a906dd1560b2bb4e8ca2"></script>
+    </head>
+    <body class="text-gray-900 font-sans antialiased">
+        <!doctype html>
+<html>
+    <head>
+        <title>Calcolatore Orari</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="lg:container mx-auto my-2 p-2">
+            <h1 class="text-3xl mb-4 font-bold">Calcolatore di orari</h1>
+            <div class="px-4 py-2 bg-blue-100 rounded mb-4">
+                Inserire gli orari utilizzando il punto "." come separatore tra ore e minuti.<br>
+                Premere <kbd class="bg-grey-200">TAB</kbd> per passare al campo successivo.<br>
+                Premere <kbd>INVIO</kbd> per creare una nuova riga.
+            </div>
+            <div x-data="workingTimeRows()" x-on:keydown.enter.prevent="appendRow()">
+                <template x-for="(row, i) in rows" :key="i">
+                    <div class="mb-2 flex flex-row flex-wrap items-baseline">
+                        <div class="flex-auto flex flex-row flex-wrap">
+                            <div class="flex-auto flex flex-no-wrap mr-2 mb-1 md:mb-2">
+                                <input :x-ref="i" inputmode="numeric" pattern="[0-9\.]*" x-model="row.start1" type="text" placeholder="Inizio mattina" @blur="calcRowTotal(i); calcTotal()" class="w-full px-2 mr-1 py-1 rounded bg-gray-200 focus:border-yellow-500">
+                                <input inputmode="numeric" pattern="[0-9\.]*" x-model="row.end1" type="text" placeholder="Fine mattina" @blur="calcRowTotal(i); calcTotal()" class="w-full px-2 mr-1 py-1 rounded bg-gray-200 focus:border-yellow-500">
+                            </div>
+                            <hr class="mb-1 md:hidden w-full">
+                            <div class="flex-auto flex flex-no-wrap mr-2 mb-1 md:mb-2">
+                                <input inputmode="numeric" pattern="[0-9\.]*" x-model="row.start2" type="text" placeholder="Inizio pomeriggio" @blur="calcRowTotal(i); calcTotal()" class="w-full px-2 mr-1 py-1 rounded bg-gray-200 focus:border-yellow-500">
+                                <input inputmode="numeric" pattern="[0-9\.]*" x-model="row.end2" type="text" placeholder="Fine pomeriggio" @blur="calcRowTotal(i); calcTotal()" class="w-full px-2 mr-1 py-1 rounded bg-gray-200 focus:border-yellow-500">
+                            </div>
+                        </div>
+                        <div class="flex-shrink">
+                            <!-- <button type="button" @click="row.total = calcRowTotal(row)">Calcola</button> -->
+                            Tot: <span x-text="row.total ? row.total.toFormat('hh:mm') : '00:00'" class="font-bold"></span>
+                        </div>
+                    </div>
+                </template>
+
+                <button @click="appendRow()" class="my-2 px-3 py-1 font-bold rounded bg-yellow-400 hover:bg-yellow-500" title="Aggiungi riga">+</button>
+
+                <div>
+                    Totale:
+                    <span x-text="total ? total.toFormat('hh:mm') : '00:00'" class="font-bold ml-2"></span>
+                </div>
+
+                <button type="button" @click="reset()" class="my-2 px-3 py-1 font-bold rounded bg-yellow-400 hover:bg-yellow-500">Reset</button>
+            </div>
+            <div class="mt-8" x-data="timeSum()" x-on:keydown.enter.prevent="appendTime()">
+                <h2 class="text-xl mb-4 font-bold">Somma orari</h2>
+                <div class="flex flex-wrap">
+                    <template x-for="(t, i) in times" :key="i">
+                        <div class="flex flex-no-wrap items-baseline">
+                            <div class="flex-auto mb-1">
+                                <input :x-ref="i" inputmode="numeric" pattern="[0-9\.]*" x-model="t.time" type="text" placeholder="hh.mm" @input="sum()" class="w-auto px-2 mr-1 py-1 rounded bg-gray-200 focus:border-yellow-500">
+                            </div>
+                            <div class="flex-shrink mb-1" x-show="i !== times.length-1">
+                                <span class="mr-1">+&nbsp;</span>
+                            </div>
+                            <div class="flex-auto mb-1" x-show="i === times.length-1">
+                                <button @click="appendTime()" class="mr-1 px-3 py-1 font-bold rounded bg-yellow-400 hover:bg-yellow-500" title="Aggiungi riga">+</button>
+                            </div>
+                        </div>
+                    </template>
+                    <div>
+                        =
+                        <span x-text="total ? total.toFormat('hh:mm') : '00:00'" class="font-bold ml-2"></span>
+                        <button type="button" @click="reset()" class="px-3 py-1 font-bold rounded bg-yellow-400 hover:bg-yellow-500">Reset</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8">
+                <hr class="w-full mb-2">
+                <p>
+                    Questo progetto è stato realizzato da <a href="https://github.com/ManuDoni" class="text-yellow-500 hover:text-yellow-600">Manuel Donini</a> con <a href="https://github.com/alpinejs/alpine" class="text-yellow-500 hover:text-yellow-600">Alpine JS</a>
+                    e <a href="https://tailwindcss.com/" class="text-yellow-500 hover:text-yellow-600">Tailwind CSS</a>.<br>
+                    Il codice sorgente è disponibile <a href="https://gist.github.com/ManuDoni/7b65568541d333b422678657b536f771" class="text-yellow-500 hover:text-yellow-600">qui</a>.<br>
+                    Versione: 1.2.1
+                </p>
+            </div>
+        </div>
+
+        <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+        <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/luxon@1.25.0/build/global/luxon.min.js" integrity="sha256-OVk2fwTRcXYlVFxr/ECXsakqelJbOg5WCj1dXSIb+nU=" crossorigin="anonymous"></script>
+        <script>
+
+            var parseInput = function(input) {
+                if (!input) {
+                    return {hour: 0, minute: 0};
+                }
+                let matches = /^(\d+)?\.?(\d+)?$/.exec(input);
+                //se l'input non è valido mostra errore
+                if (matches === null) {
+                    alert('L\'orario inserito non è valido, deve contenere solo numeri con eventualmente il punto a separare ore e minuti');
+                    return {hour: 0, minute: 0};
+                }
+                return {hour: matches[1], minute: matches[2] || 0};
+            }
+
+            function workingTimeRows() {
+                var createRow = function() {
+                    return {
+                        start1: '',
+                        end1: '',
+                        start2: '',
+                        end2: '',
+                        total: null,
+                    }
+                }
+                return {
+                    rows: [createRow()],
+                    total: null,
+                    appendRow: function(){
+                        this.rows.push(createRow());
+                        const self = this;
+                        //set focus on last input
+                        this.$nextTick(function () {
+                            setTimeout(function () {
+                                self.$refs[self.rows.length-1].focus();
+                            }, 50);
+                        });
+                    },
+                    reset: function(){
+                        this.rows = [createRow()];
+                        this.total = null;
+                    },
+                    calcRowTotal: function(rowIndex){
+                        let row = this.rows[rowIndex];
+                        let total = luxon.Duration.fromObject({hours:0, minutes:0});
+                        let segments = [[row.start1, row.end1], [row.start2, row.end2]];
+                        for (let k in segments) {
+                            if(!segments[k][0] || !segments[k][1]) {
+                                continue;
+                            }
+                            let start = luxon.DateTime.fromObject(parseInput(segments[k][0]));
+                            let end = luxon.DateTime.fromObject(parseInput(segments[k][1]));
+                            let partial = luxon.Interval.fromDateTimes(start, end).toDuration();
+                            total = total.plus(partial);
+                        }
+                        // console.log(total);
+                        this.rows[rowIndex].total = total.normalize();
+                    },
+                    calcTotal: function() {
+                        let total = luxon.Duration.fromObject({hours:0, minutes:0});
+                        for(let k in this.rows) {
+                            total = this.rows[k].total ? total.plus(this.rows[k].total) : total;
+                        }
+                        // console.log(total);
+                        this.total = total;
+                    }
+                }
+            }
+            function timeSum(){
+                var createTime = function() {
+                    return {
+                        time: '',
+                    }
+                }
+                return {
+                    times: [createTime(), createTime()],
+                    total: null,
+                    appendTime: function() {
+                        this.times.push(createTime());
+                        const self = this;
+                        //set focus on last input
+                        this.$nextTick(function () {
+                            setTimeout(function () {
+                                self.$refs[self.times.length-1].focus();
+                            }, 50);
+                        });
+                    },
+                    sum: function(){
+                        let tot = null;
+                        if (this.times.length > 0) {
+                            tot = this.times.reduce(function(sum, item) {
+                                return sum.plus(parseInput(item.time));
+                            }, luxon.Duration.fromObject({hour: 0, minutes: 0}));
+                        }
+                        this.total = tot;
+                    },
+                    reset: function() {
+                        this.times = [createTime(), createTime()];
+                        this.total = null;
+                    }
+                };
+            }
+        </script>
+    </body>
+</html>
+    </body>
+</html>
