@@ -3,7 +3,7 @@
 return [
     'production' => false,
     'baseUrl' => '',
-    'title' => 'Jigsaw',
-    'description' => 'Website description.',
+    'title' => 'Manuel Donini',
+    'description' => 'Manuel Donini\'s personal website',
     'collections' => [],
 ];
