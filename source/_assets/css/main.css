@@ -4,6 +4,32 @@
 
 @layer base {
 
+    @font-face {
+        font-family: 'Comfortaa';
+        font-weight: light 300;
+        src: local('Comfortaa') url(../fonts/Comfortaa-Light.ttf) format('ttf');
+    }
+    @font-face {
+        font-family: 'Comfortaa';
+        font-weight: normal 400;
+        src: local('Comfortaa') url(../fonts/Comfortaa-Regular.ttf) format('ttf');
+    }
+    @font-face {
+        font-family: 'Comfortaa';
+        font-weight: medium 500;
+        src: local('Comfortaa') url(../fonts/Comfortaa-Medium.ttf) format('ttf');
+    }
+    @font-face {
+        font-family: 'Comfortaa';
+        font-weight: 600;
+        src: local('Comfortaa') url(../fonts/Comfortaa-SemiBold.ttf) format('ttf');
+    }
+    @font-face {
+        font-family: 'Comfortaa';
+        font-weight: bold 700;
+        src: local('Comfortaa') url(../fonts/Comfortaa-Bold.ttf) format('ttf');
+    }
+
     h1 {
         @apply mb-4 text-5xl font-bold;
     }

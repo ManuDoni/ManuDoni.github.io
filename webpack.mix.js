@@ -11,6 +11,7 @@ mix.jigsaw()
         require('tailwindcss'),
     ])
     .copy('source/_assets/images/', 'source/assets/build/images/')
+    .copy('source/_assets/fonts/', 'source/assets/build/fonts/')
     .options({
         processCssUrls: false,
     })
