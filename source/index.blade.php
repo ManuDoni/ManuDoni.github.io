@@ -22,7 +22,7 @@
                 As you can see from the background, I'm a lake lover.<br>
                 I live in one of the best (IMHO) possible places, on the shores of Lago Maggiore in Italy.<br>
                 One of my dreams is to buy a little sailboat and travel around the lake listening to the mellow sound of water and Pink Floyd music.<br>
-                <i>"Ah che pace!"</i>
+                <i>"Ah, che pace!"</i>
             </p>
         </div>
         <div>
